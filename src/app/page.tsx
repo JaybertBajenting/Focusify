@@ -1,5 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
+import Landing from "./landing/page";
+
 
 
 
@@ -7,8 +9,7 @@ import { useRouter } from "next/navigation";
 
 const Home = () => {
   <div>
-    <h1>asdjasdjasdhsj</h1>
-    <h2></h2>
+    <Landing/>
   </div>;
 };
 
