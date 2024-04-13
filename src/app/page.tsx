@@ -1,16 +1,16 @@
-"use client";
-import { useRouter } from "next/navigation";
+
+"use client"
+
 import Landing from "./landing/page";
 
 
 
-
-
-
-const Home = () => {
-  <div>
-    <Landing/>
-  </div>;
-};
+const Home =  () =>{
+  return(
+    <div>
+      <Landing/>
+    </div>
+  );
+}
 
 export default Home;

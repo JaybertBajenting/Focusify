@@ -1,7 +1,8 @@
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 
-const Logo = () => {
+export const Logo = () => {
   return (
     <>
       <Image
@@ -14,8 +15,19 @@ const Logo = () => {
   );
 };
 
+const navLinks = [
+  { name: "Home", href: "/landing" },
+  { name: "Features", href: "/feature" },
+  { name: "How it Works", href: "/works" },
+  { name: "About Us", href: "/about" },
+];
+
 const Navbar = () => {
   const router = useRouter();
+  const pathName = usePathname();
+  
+  
+
   return (
     <div className="">
       <div className="flex items-center justify-between ">
@@ -24,10 +36,21 @@ const Navbar = () => {
         </div>
 
         <ul className="text-[15px] space-x-20 cursor-pointer">
-          <li className="inline-block text-skyblue">Home</li>
-          <li className="inline-block">Features</li>
-          <li className="inline-block">How it Works</li>
-          <li className="inline-block">About Us</li>
+          {navLinks.map((link) => {
+            const isActive = pathName.startsWith(link.href);
+            return (
+              <li className="inline-block">
+                {" "}
+                <Link
+                  href={link.href}
+                  key={link.name}
+                  className={isActive ? "text-skyblue" : "text-black"}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
         <div className="space-x-8">
           <button
@@ -44,13 +67,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-
-   
-        
-        
-        
-
-      </div>
+    </div>
   );
 };
 

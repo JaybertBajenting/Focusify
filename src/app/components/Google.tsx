@@ -1,5 +1,3 @@
-
-
 import React from "react";
 
 const GoogleIcon = () => {
@@ -41,4 +39,3 @@ const GoogleIcon = () => {
 };
 
 export default GoogleIcon;
-

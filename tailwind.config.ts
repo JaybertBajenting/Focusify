@@ -29,6 +29,8 @@ const config: Config = {
         "gray": "#636363",
         "light-green" : "#DBFA29",
         "skyblue":"#49C5B6",
+        "pinkish":"#FF4C4C",
+        
       }
     },
   },
