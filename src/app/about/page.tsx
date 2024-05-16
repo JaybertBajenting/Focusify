@@ -1,6 +1,6 @@
 "use client"
-import Navbar from "../components/Navbar";
-import { Logo } from "../components/Navbar";
+import Navbar from "../components/ui/Navbar";
+import { Logo } from "../components/ui/Navbar";
 import { faCopyright } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";

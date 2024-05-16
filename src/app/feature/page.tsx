@@ -1,6 +1,6 @@
 "use client";
 
-import Navbar from "../components/Navbar";
+import Navbar from "../components/ui/Navbar";
 import { faHourglass } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlay, faClock } from "@fortawesome/free-regular-svg-icons";
