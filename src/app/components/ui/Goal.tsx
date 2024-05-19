@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import { CiTrash } from "react-icons/ci";
 import { RxCheckbox } from "react-icons/rx";
 
-
-
 const Goal = () => {
   const [going, setOngoing] = useState<number>(0);
   const [completed, setCompleted] = useState<number>(0);
@@ -20,7 +18,6 @@ const Goal = () => {
     }
   };
 
-
   const handleDelete = (index: number) => {
     const newTaskList = [
       ...taskList.slice(0, index),
@@ -33,8 +30,6 @@ const Goal = () => {
   const handleCheck = (index: number) => {
     handleDelete(index);
     setCompleted((prev) => prev + 1);
-
-    
   };
 
   return (

@@ -2,7 +2,6 @@
 
 import Navbar from "../components/ui/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 import {
   faMobileScreen,
   faMobileScreenButton,

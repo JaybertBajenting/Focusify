@@ -10,9 +10,6 @@ const Line = () => {
   );
 };
 
-
-
-
 const Works = () => {
   return (
     <div className="max-w-[1920px] mx-auto pl-[50px] pr-[50px]">

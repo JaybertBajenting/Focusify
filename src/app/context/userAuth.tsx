@@ -1,6 +1,6 @@
 "use client"
 import { faLastfmSquare } from "@fortawesome/free-brands-svg-icons";
-import { usePathname, useRouter } from "next/navigation";
+import { redirect, usePathname, useRouter } from "next/navigation";
 import { createContext,ReactNode,useContext, useEffect, useState } from "react";
 import { getUserCookie,setUserCookie,removeUserCookie } from "@/lib/cookies";
 import React from "react";
@@ -40,13 +40,14 @@ export type UserDetails = {
     password?:string;
     name?:string;
     profilePicture?:string;
+    hoursStudied?: number;
     role?:Role;
     enabled?: true;
 	authorities?: Authority[];
 	credentialsNonExpired?: boolean;
 	accountNonExpired?: boolean;
 	accountNonLocked?: boolean;
-    taskList?:string[];
+    
 }
 
 export type User = {
@@ -72,7 +73,7 @@ export const defaultUserValue = {
 export const AuthProvider = ({children}:AuthProviderProps) =>{
     const[user,setUser] = useState<User>(defaultUserValue);
     const[isLoading,setIsLoading] = useState<boolean>(true);
-    const[task,setTask] = useState<string[]>([]);
+   
     
 
     
@@ -82,9 +83,6 @@ export const AuthProvider = ({children}:AuthProviderProps) =>{
 
 
 
-    const addTask = (anotherTask:string) =>{
-        setTask([...task,anotherTask]);
-    }
   
     
 
@@ -124,7 +122,7 @@ export const AuthProvider = ({children}:AuthProviderProps) =>{
 			const newUser: User = { userDetails, token, isAuthenticated: true };
 			setUser(newUser);
 			await setUserCookie(newUser);
-           
+          
         },
 		[user.isAuthenticated]
        
@@ -135,6 +133,7 @@ export const AuthProvider = ({children}:AuthProviderProps) =>{
 		await removeUserCookie();
 		setUser(defaultUserValue);
 		setIsLoading(false);
+        localStorage.removeItem("user");
 	}, []);
     
     

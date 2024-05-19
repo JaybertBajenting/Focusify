@@ -38,11 +38,9 @@ const Navbar = () => {
           {navLinks.map((link) => {
             const isActive = pathName.startsWith(link.href);
             return (
-              <li className="inline-block">
-                {" "}
+              <li className="inline-block" key={link.name}>
                 <Link
                   href={link.href}
-                  key={link.name}
                   className={isActive ? "text-skyblue" : "text-black"}
                 >
                   {link.name}
