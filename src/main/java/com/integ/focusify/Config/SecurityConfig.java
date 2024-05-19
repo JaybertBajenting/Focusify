@@ -30,20 +30,27 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
+
+
+
+
+
+
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(request -> request
-                .requestMatchers("/api/v1/auth/**")
-                .permitAll().requestMatchers("/api/v1/auth/user")
-                .hasAnyAuthority(Role.STUDENT.name())
-                .anyRequest().authenticated())
+                        .requestMatchers("/api/v1/auth/**")
+                        .permitAll().requestMatchers("/api/v1/auth/user/task/**")
+                        .permitAll().requestMatchers("/api/v1/auth/user")
+                        .hasAnyAuthority(Role.STUDENT.name())
+                        .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(jwtAuthenticationFilter,
                         UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
-
+    
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -56,6 +63,7 @@ public class SecurityConfig {
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
+
 
 
     @Bean

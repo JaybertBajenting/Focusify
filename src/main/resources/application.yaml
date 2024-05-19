@@ -1,12 +1,15 @@
-
+server:
+  tomcat:
+    accesslog:
+      enabled: true
 
 spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/focusify
-    username: root
-    password:
-    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+  datasource:
+    url: jdbc:postgresql://dpg-cp4nl8a1hbls73f41n00-a.singapore-postgres.render.com/database_oe1b
+    username: database_oe1b_user
+    password: bcnBzAaZYHIUVSq9McqEgQpJCzfWQDfJ
+    driver-class-name: org.postgresql.Driver

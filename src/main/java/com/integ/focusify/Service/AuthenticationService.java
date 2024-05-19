@@ -3,6 +3,7 @@ package com.integ.focusify.Service;
 
 import com.integ.focusify.DTO.Request.LoginRequest;
 import com.integ.focusify.DTO.Request.RegisterRequest;
+import com.integ.focusify.DTO.Request.UpdateRequest;
 import com.integ.focusify.DTO.Response.LoginResponse;
 import com.integ.focusify.Entity.Role;
 import com.integ.focusify.Entity.User;
@@ -35,10 +36,13 @@ public class AuthenticationService {
             throw new EntityExistsException("Username already Exists");
         }
 
+
+
         User newUser = User.builder().username(registerRequest.getUsername())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
-                .role(Role.STUDENT)
+                .role(Role.STUDENT).hoursStudied(0.00)
                 .name(registerRequest.getFirstName() + " " + registerRequest.getLastName())
+                .profilePicture("default-avatar.jpg")
                 .build();
         User user = userRepository.save(newUser);
         return new LoginResponse(user,jwtService.generateToken(user));
@@ -57,6 +61,43 @@ public class AuthenticationService {
 
         return new LoginResponse(user,jwtService.generateToken(user));
     }
+
+
+
+
+
+    public LoginResponse updateUser(Long userId,UpdateRequest updateRequest){
+
+        User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not Found!"));
+
+        String fName = "",lName = "";
+
+
+        if(updateRequest.getFirstName() != null && !updateRequest.getFirstName().isEmpty()){
+            fName = updateRequest.getFirstName();
+        }
+        if(updateRequest.getLastName() != null && !updateRequest.getLastName().isEmpty()){
+            lName = updateRequest.getLastName();
+        }
+        user.setName(fName + " " + lName);
+
+        if(updateRequest.getPassword() != null && !updateRequest.getPassword().isBlank()){
+            user.setPassword(passwordEncoder.encode(updateRequest.getPassword()));
+        }
+
+        if(updateRequest.getHoursStudied() != 0){
+            user.setHoursStudied(updateRequest.getHoursStudied() + user.getHoursStudied());
+        }
+
+
+        return new LoginResponse( userRepository.save(user),jwtService.generateToken(user));
+    }
+
+
+
+
+
+
 
 
 

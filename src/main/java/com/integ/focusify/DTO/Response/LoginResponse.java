@@ -16,4 +16,6 @@ public class LoginResponse {
         this.user = user;
         this.token = token;
     }
+
+
 }
