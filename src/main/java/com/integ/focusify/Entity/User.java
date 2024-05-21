@@ -97,22 +97,22 @@ public class User implements UserDetails {
         this.goalsCompleted.add(goal);
     }
 
-    // Method to add an ongoing goal
+
     public void addOngoingGoal(String goal) {
         this.goalsOnGoing.add(goal);
     }
 
-    // Method to get the list of completed goals
+
     public List<String> getGoalsCompleted() {
         return this.goalsCompleted;
     }
 
-    // Method to get the list of ongoing goals
+
     public List<String> getGoalsOnGoing() {
         return this.goalsOnGoing;
     }
 
-    // Method to remove an ongoing goal
+
     public void removeOngoingGoal(String goal) {
         this.goalsOnGoing.remove(goal);
     }

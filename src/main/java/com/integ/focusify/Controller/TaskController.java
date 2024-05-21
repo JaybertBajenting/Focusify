@@ -44,29 +44,34 @@ public class TaskController {
 
 
     @PostMapping("/addFinishedGoal/{userId}/{goal}")
-    public User addCompletedGoal(@PathVariable Long userId, @RequestParam String goal) {
+    public User addCompletedGoal(@PathVariable Long userId, @PathVariable String goal) {
         return taskService.addCompletedGoal(userId, goal);
     }
 
-    @PostMapping("/{userId}/addOnGoingGoal/{goal}")
-    public User addOngoingGoal(@PathVariable Long userId, @RequestParam String goal) {
+    @PostMapping("addOnGoingGoal/{userId}/{goal}")
+    public User addOngoingGoal(@PathVariable Long userId, @PathVariable String goal) {
         return taskService.addOngoingGoal(userId, goal);
     }
 
 
 
-    @GetMapping("/{userId}/completed-goals")
+    @GetMapping("completed-goals/{userId}")
     public List<String> getCompletedGoals(@PathVariable Long userId) {
         return taskService.getCompletedGoals(userId);
     }
 
-    @GetMapping("/{userId}/ongoing-goals")
+    @GetMapping("/ongoing-goals/{userId}")
     public List<String> getOngoingGoals(@PathVariable Long userId) {
         return taskService.getOngoingGoals(userId);
     }
 
-    @DeleteMapping("/{userId}/deleteOnGoingGoal/{goal}")
-    public User deleteOngoingGoal(@PathVariable Long userId, @RequestParam String goal) {
+
+    
+
+
+
+    @DeleteMapping("/deleteOnGoingGoal/{userId}/{goal}")
+    public User deleteOngoingGoal(@PathVariable Long userId, @PathVariable String goal) {
         return taskService.deleteOngoingGoal(userId, goal);
     }
 
