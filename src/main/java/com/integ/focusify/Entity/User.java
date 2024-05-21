@@ -49,6 +49,16 @@ public class User implements UserDetails {
 
 
 
+    @ElementCollection
+    @CollectionTable(name = "goals_completed", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "goal")
+    private List<String> goalsCompleted = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(name = "goals_ongoing", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "goal")
+    private List<String> goalsOnGoing = new ArrayList<>();
+
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -76,5 +86,34 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+
+
+
+
+
+    public void addCompletedGoal(String goal) {
+        this.goalsCompleted.add(goal);
+    }
+
+    // Method to add an ongoing goal
+    public void addOngoingGoal(String goal) {
+        this.goalsOnGoing.add(goal);
+    }
+
+    // Method to get the list of completed goals
+    public List<String> getGoalsCompleted() {
+        return this.goalsCompleted;
+    }
+
+    // Method to get the list of ongoing goals
+    public List<String> getGoalsOnGoing() {
+        return this.goalsOnGoing;
+    }
+
+    // Method to remove an ongoing goal
+    public void removeOngoingGoal(String goal) {
+        this.goalsOnGoing.remove(goal);
     }
 }
